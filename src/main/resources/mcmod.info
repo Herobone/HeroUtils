@@ -1,0 +1,15 @@
+[
+{
+  "modid": "heroutils",
+  "name": "Herobone-Utils Mod",
+  "description": "Mod by Herobone",
+  "version": "1.0",
+  "mcversion": "1.10.2",
+  "url": "",
+  "authorList": ["Herobone"],
+  "credits": "Herobone",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

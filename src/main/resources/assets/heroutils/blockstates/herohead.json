@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "heroutils:herohead" },
+        "facing=south": { "model": "heroutils:herohead", "y": 180 },
+        "facing=west":  { "model": "heroutils:herohead", "y": 270 },
+        "facing=east":  { "model": "heroutils:herohead", "y": 90 }
+    }
+}

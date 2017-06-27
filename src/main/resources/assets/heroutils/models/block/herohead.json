@@ -1,0 +1,12 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "particle": "heroutils:blocks/HeroHeadFront",
+        "down": "heroutils:blocks/HeroHeadTop",
+        "up": "heroutils:blocks/HeroHeadTop",
+        "north": "heroutils:blocks/HeroHeadFront",
+        "east": "heroutils:blocks/HeroHeadSideRight",
+        "south": "heroutils:blocks/HeroHeadBack",
+        "west": "heroutils:blocks/HeroHeadSideLeft"
+    }
+}
