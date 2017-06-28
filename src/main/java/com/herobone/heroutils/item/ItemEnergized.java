@@ -4,8 +4,9 @@ import java.util.List;
 
 import mekanism.api.EnumColor;
 import mekanism.api.energy.IEnergizedItem;
+import mekanism.common.util.ItemDataUtils;
+
 import com.herobone.heroutils.HeroUtils;
-import mekanism.api.ItemDataUtils;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

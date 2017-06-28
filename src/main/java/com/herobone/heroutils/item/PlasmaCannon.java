@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import com.herobone.heroutils.entity.projectile.PlasmaArrow;
 import com.herobone.heroutils.registry.ItemRegistry;
 
-import mekanism.api.ItemDataUtils;
+import mekanism.common.util.ItemDataUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
