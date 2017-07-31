@@ -25,6 +25,7 @@ config
 .vs/
 logs
 asm
+*.txt
 
 # Sonar Qube
 .scannerwork/
