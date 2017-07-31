@@ -5,23 +5,18 @@ import java.util.List;
 import mekanism.api.EnumColor;
 import mekanism.api.energy.IEnergizedItem;
 import mekanism.common.util.ItemDataUtils;
-
-import com.herobone.heroutils.HeroUtils;
+import mekanism.common.util.LangUtils;
+import mekanism.common.util.MekanismUtils;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.fml.common.Optional.Interface;
-import net.minecraftforge.fml.common.Optional.InterfaceList;
-import net.minecraftforge.fml.common.Optional.Method;
 import cofh.api.energy.IEnergyContainerItem;
 
 public class ItemEnergized extends Item implements IEnergizedItem, IEnergyContainerItem
 {
 	/** The maximum amount of energy this item can hold. */
-	public double MAX_ELECTRICITY;
+	private double MAX_ELECTRICITY;
 
 	public ItemEnergized(double maxElectricity)
 	{
@@ -135,6 +130,12 @@ public class ItemEnergized extends Item implements IEnergizedItem, IEnergyContai
 	public int getEnergyStored(ItemStack theItem)
 	{
 		return (int)Math.round(getEnergy(theItem)*0.4D);
+	}
+	
+	@Override
+	public void addInformation(ItemStack itemstack, EntityPlayer entityplayer, List<String> list, boolean flag)
+	{
+		list.add(EnumColor.AQUA + LangUtils.localize("tooltip.storedEnergy") + ": " + EnumColor.GREY + MekanismUtils.getEnergyDisplay(getEnergy(itemstack)));
 	}
 
 	@Override

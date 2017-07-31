@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "custom": { "flip-v": true },
+    "model": "heroutils:snow_cepter.obj"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{
+            "rotation": [ 0, -135, 25 ],
+            "translation": [ 0, 4, 2 ],
+            "scale": [ 0.7, 0.7, 0.7 ]}]
+  }
+}

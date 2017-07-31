@@ -1,20 +1,15 @@
 package com.herobone.heroutils.entity.projectile;
 
-import com.herobone.heroutils.HeroUtils;
 import com.herobone.heroutils.registry.ItemRegistry;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.world.World;
 
 public class PlasmaArrow extends EntityArrow {
-
-	private int duration;
 
 	public PlasmaArrow(World worldIn)
     {
@@ -45,12 +40,13 @@ public class PlasmaArrow extends EntityArrow {
     {
         super.onUpdate();
  
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 4; i++)
         {
-            double x = (double)(rand.nextInt(10) - 5) / 8.0D;
-            double y = (double)(rand.nextInt(10) - 5) / 8.0D;
-            double z = (double)(rand.nextInt(10) - 5) / 8.0D;
-            worldObj.spawnParticle(EnumParticleTypes.END_ROD, posX, posY, posZ, x, y, z, new int[0]);
+            worldObj.spawnParticle(EnumParticleTypes.LAVA, posX, posY, posZ, 1, 1, 1, new int[0]);
+        }
+        
+        if (this.inGround) {
+        	this.setDead();
         }
     }
 
@@ -61,7 +57,7 @@ public class PlasmaArrow extends EntityArrow {
 	
     protected void arrowHit(EntityLivingBase living)
     {
-        super.arrowHit(living);
+        living.setDead();
     }
 
 }

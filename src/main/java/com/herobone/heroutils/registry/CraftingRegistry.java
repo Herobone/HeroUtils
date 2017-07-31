@@ -13,19 +13,17 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CraftingRegistry {
-
-	public CraftingRegistry() {
-	}
 	
 	public void register() {
-		GameRegistry.addShapedRecipe(new ItemStack(BlockRegistry.tutblock, 2), new Object[] {
-			"dxx",
-			"dlx",
-			"dxx",
-			'd', new ItemStack(Blocks.DIRT),
-			'l', new ItemStack(Items.DYE, 1, 4)
-		});
-		GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.tutitem), Blocks.DIRT, Blocks.STONE);
+		GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.plasmacannon, 1), new Object[] {
+				"igi",
+				"dss",
+				"xii",
+				'i', new ItemStack(Items.IRON_INGOT),
+				'g', new ItemStack(Blocks.GLASS),
+				'd', new ItemStack(Blocks.DRAGON_EGG),
+				's', new ItemStack(Items.NETHER_STAR)
+			});
 	}
 
 	public void unregister() {
@@ -35,14 +33,25 @@ public class CraftingRegistry {
 			IRecipe recipe = it.next();
 			ItemStack output = recipe.getRecipeOutput();
 			if (output != null && output.getItem() != null) {
-				if (output.isItemEqual(new ItemStack(Blocks.IRON_BARS))){
-					it.remove();
-				}
-				if (output.isItemEqual(new ItemStack(Blocks.IRON_BLOCK))){
-					it.remove();
-				}
 				if (output.isItemEqual(new ItemStack(Items.IRON_SWORD))){
 					output.addAttributeModifier(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier("Weapon modifier", 20, 0), EntityEquipmentSlot.MAINHAND);
+					output.addAttributeModifier(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier("Weapon modifier", 6, 0), EntityEquipmentSlot.MAINHAND);
+				}
+				if (output.isItemEqual(new ItemStack(Items.GOLDEN_SWORD))){
+					output.addAttributeModifier(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier("Weapon modifier", 20, 0), EntityEquipmentSlot.MAINHAND);
+					output.addAttributeModifier(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier("Weapon modifier", 5, 0), EntityEquipmentSlot.MAINHAND);
+				}
+				if (output.isItemEqual(new ItemStack(Items.DIAMOND_SWORD))){
+					output.addAttributeModifier(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier("Weapon modifier", 20, 0), EntityEquipmentSlot.MAINHAND);
+					output.addAttributeModifier(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier("Weapon modifier", 8, 0), EntityEquipmentSlot.MAINHAND);
+				}
+				if (output.isItemEqual(new ItemStack(Items.WOODEN_SWORD))){
+					output.addAttributeModifier(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier("Weapon modifier", 20, 0), EntityEquipmentSlot.MAINHAND);
+					output.addAttributeModifier(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier("Weapon modifier", 4, 0), EntityEquipmentSlot.MAINHAND);
+				}
+				if (output.isItemEqual(new ItemStack(Items.STONE_SWORD))){
+					output.addAttributeModifier(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier("Weapon modifier", 20, 0), EntityEquipmentSlot.MAINHAND);
+					output.addAttributeModifier(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier("Weapon modifier", 5, 0), EntityEquipmentSlot.MAINHAND);
 				}
 			}
 		}

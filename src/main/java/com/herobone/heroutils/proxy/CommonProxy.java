@@ -2,15 +2,12 @@ package com.herobone.heroutils.proxy;
 
 public class CommonProxy {
 
-	//Client Stuff
+	/** Client Stuff **/
 	public void registerModels(){
 		
 	}
 
-	public void registerTileEntities() {
-		
-	}
-
+	/** Init stuff. Mostly only ClientSide **/
 	public void init() {
 	}
 }

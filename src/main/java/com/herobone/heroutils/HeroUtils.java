@@ -1,7 +1,5 @@
 package com.herobone.heroutils;
 
-import java.lang.reflect.Proxy;
-
 import com.herobone.heroutils.handler.TutorialEventHandler;
 import com.herobone.heroutils.proxy.CommonProxy;
 import com.herobone.heroutils.registry.BlockRegistry;
@@ -10,9 +8,10 @@ import com.herobone.heroutils.registry.EntityRegister;
 import com.herobone.heroutils.registry.ItemRegistry;
 import com.herobone.heroutils.registry.SmeltingRegistry;
 import com.herobone.heroutils.registry.TabRegister;
+import com.herobone.heroutils.tileentity.TileEntityCookieJar;
 
+import mekanism.api.EnumColor;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraftforge.client.model.obj.OBJLoader;
@@ -20,6 +19,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.Mod.*;
 import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = HeroUtils.MODID, version = HeroUtils.VERSION, name = HeroUtils.NAME, dependencies = "after:CoFHCore;")
 public class HeroUtils
@@ -29,27 +29,27 @@ public class HeroUtils
     public static final String NAME = "Herobone-Utils Mod";
     
     @Instance(MODID)
-    public static HeroUtils instance = new HeroUtils();
+    public static final HeroUtils instance = new HeroUtils();
     
     @SidedProxy(modId = MODID, serverSide = "com.herobone.heroutils.proxy.CommonProxy", clientSide = "com.herobone.heroutils.proxy.ClientProxy")
-    public static CommonProxy proxy = new CommonProxy();
+    public static final CommonProxy proxy = new CommonProxy();
     
-    public static RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
-    public static RenderItem itemRenderer = Minecraft.getMinecraft().getRenderItem();
+    public static final RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
+    public static final RenderItem itemRenderer = Minecraft.getMinecraft().getRenderItem();
     
     public TabRegister tab;
     
-    public ItemRegistry items;
-    public BlockRegistry blocks;
-    public EntityRegister entityreg;
-
-    public CraftingRegistry crafting;
-    public SmeltingRegistry smelting;
+    public static final String CHATPREFIX = EnumColor.DARK_BLUE + "[HeroUtils] ";
     
     @EventHandler
-    public void preinit(FMLPreInitializationEvent event)
-    {
+    public void preinit(FMLPreInitializationEvent event) {
+    	ItemRegistry items;
+        BlockRegistry blocks;
+        EntityRegister entityreg;
+    	
     	OBJLoader.INSTANCE.addDomain(HeroUtils.MODID);
+
+    	proxy.init();
     	
     	tab = new TabRegister();
     	
@@ -64,12 +64,13 @@ public class HeroUtils
     	entityreg = new EntityRegister();
     	entityreg.register();
     	
-    	proxy.registerTileEntities();
     }
     
     @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
+    public void init(FMLInitializationEvent event) {
+    	CraftingRegistry crafting;
+        SmeltingRegistry smelting;
+    	
     	crafting = new CraftingRegistry();
     	crafting.unregister();
     	crafting.register();
@@ -77,6 +78,8 @@ public class HeroUtils
     	smelting = new SmeltingRegistry();
     	smelting.unregister();
     	smelting.register();
+    	
+    	GameRegistry.registerTileEntity(TileEntityCookieJar.class, MODID + "TileEntityCookieJar");
     	
     	MinecraftForge.EVENT_BUS.register(new TutorialEventHandler());
     	

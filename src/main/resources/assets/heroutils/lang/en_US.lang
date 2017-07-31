@@ -1,9 +1,13 @@
-itemGroup.tutorial=§1T§2u§3t§4o§5r§6i§7al Tab
+itemGroup.heroutils=Heroutils
 
-item.tutitem.name=§5Tutorial §4Item
-item.tutfood.name=§6Super-Salad
 item.gravitybelt.name=§5Gravity-Belt
 item.plasmacannon.name=§1Plasma Cannon
+item.plasmaprojectile.name=Plasma Projectile
+item.trident.name=Trident
 
-tile.tutblock.name=§5Tutorial §6Block
-tile.herohead.name=§5Herobone's §6Head
+tile.cookiejar.name=Cookie Jar
+tile.herohead.name=§5Herobone's Head
+
+tooltip.activity=Activity
+tooltip.plasmacannon.active=Active
+tooltip.plasmacannon.deactive=Inactive

@@ -20,3 +20,13 @@ build
 # other
 eclipse
 run
+mods
+config
+.vs/
+logs
+asm
+
+# Sonar Qube
+.scannerwork/
+sonar-project.properties
+
