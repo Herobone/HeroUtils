@@ -8,32 +8,60 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
-//Only edit below this line, the above code adds and enables the nessasary things for Forge to be setup.
 
-
-version = "1.0"
-group= "com.herobone.heroutils" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group= "com.herobone.heroutils"
 archivesBaseName = "heroutils"
 
-sourceCompatibility = targetCompatibility = "1.6" // Need this here so eclipse task generates correctly.
+sourceCompatibility = targetCompatibility = "1.8"
+
 compileJava {
-    sourceCompatibility = targetCompatibility = "1.6"
+    sourceCompatibility = targetCompatibility = "1.8"
 }
 
-minecraft {
-    version = "1.10.2-12.18.3.2316"
-    runDir = "run"
+// Define properties file
+ext.configFile = file "build.properties"
 
-    mappings = "snapshot_20161111"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+configFile.withReader {
+	// Load config.  It shall from now be referenced as simply config or project.config
+	def prop = new Properties()
+	prop.load(it)
+	project.ext.config = new ConfigSlurper().parse prop
+}
+
+version = config.mod_version
+
+minecraft {
+    version = config.mc_version + "-" + config.forge_version
+	mappings = config.mappings
+    runDir = "run"
+    makeObfSourceJar = false
+}
+
+repositories {
+	maven {
+		name = "ChickenBones Maven"
+		url = "http://chickenbones.net/maven/"
+	}
+	maven {
+		name = "Covers Maven"
+		url = "http://maven.covers1624.net"
+	}
+	maven {
+		name = "JEI Maven"
+		url = "http://dvs1.progwml6.com/files/maven"
+	}
+    maven {
+        name = "Multipart Maven"
+        url = "https://maven.amadornes.com/"
+    }
 }
 
 dependencies {
+	compile "codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:deobf"
+	compile "cofh:CoFHCore:${config.mc_version}-${config.cofhcore_version}:deobf"
+    compile "MCMultiPart:MCMultiPart:${config.mcmultipart}:deobf"
 	compile files("lib/Baubles-1.10.2-1.3.11.jar")
-    compile files("lib/CodeChickenLib-1.10.2-2.5.9.267-universal.jar")
-    compile files("lib/MCMultiPart-1.4.0-universal.jar")
     compile files("lib/Mekanism-1.10.2-9.2.2.301.jar")
-    compile files("lib/CoFHCore-1.10.2-4.1.11.16-universal.jar")
 }
 
 processResources
