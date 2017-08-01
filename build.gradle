@@ -83,3 +83,23 @@ processResources
         exclude 'mcmod.info'
     }
 }
+
+jar {
+	classifier = 'universal'
+}
+
+task deobfJar(type: Jar) {
+	from sourceSets.main.output
+	classifier = 'deobf'
+}
+
+task srcJar(type: Jar) {
+	from sourceSets.main.allSource
+	classifier = 'sources'
+}
+
+// Tell the artifact system about our extra jars
+artifacts {
+	archives deobfJar
+	archives srcJar
+}
