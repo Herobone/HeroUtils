@@ -95,7 +95,7 @@ public class PlasmaCannon extends ItemEnergized {
 			}
 		} else if (player.isSneaking()) {
 			toggleMode(itemStack);
-			player.addChatMessage(new TextComponentString(HeroUtils.CHATPREFIX + EnumColor.GREY + ItemRegistry.plasmacannon.getRegistryName() + ": " + EnumColor.INDIGO + getModeName(itemStack)));
+			player.addChatMessage(new TextComponentString(HeroUtils.CHATPREFIX + EnumColor.GREY + "Plasma Cannon: " + EnumColor.INDIGO + getModeName(itemStack)));
 		}
 		return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
 	}
